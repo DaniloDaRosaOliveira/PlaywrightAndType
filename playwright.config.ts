@@ -8,4 +8,9 @@ export default defineConfig({
     screenshot: 'only-on-failure', // Captura de tela em caso de falha
     video: 'retain-on-failure', // Gravação de vídeo apenas em falhas
   },
+  projects: [
+    { name: 'Chromium', use: { browserName: 'chromium' } }
+    //{ name: 'Firefox', use: { browserName: 'firefox' } },
+    //{ name: 'WebKit', use: { browserName: 'webkit' } }
+  ],
 });

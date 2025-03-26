@@ -1,4 +1,6 @@
 import { test, expect } from '@playwright/test';
+import { RegisterPage } from '../pages/RegisterPage';
+import utils from '../utils/dataGenerator';  // Importando como objeto único
 
 test('Acessar google', async ({page}) => {
     await page.goto('https://www.google.com');
@@ -6,21 +8,13 @@ test('Acessar google', async ({page}) => {
 });
 
 test('Preencher formulário e submeter', async ({ page }) => {
+    const registerPage = new RegisterPage(page);
+
     // Acessa a página
     await page.goto('https://demo.automationtesting.in/Register.html');
 
-    // Preenche os campos de nome e sobrenome
-    await page.fill('input[placeholder="First Name"]', 'João');
-    await page.fill('input[placeholder="Last Name"]', 'Silva');
-
-    // Preenche o endereço
-    await page.fill('textarea[ng-model="Adress"]', 'Rua Exemplo, 123');
-
-    // Preenche o email
-    await page.fill('input[ng-model="EmailAdress"]', 'joao.silva@email.com');
-
-    // Preenche o telefone
-    await page.fill('input[ng-model="Phone"]', '11999999999');
+    // Preenche o formulário
+    await registerPage.fillForm('João', 'Silva', utils.generateRandomEmail(), utils.generateRandomPhone());
 
     // Seleciona o gênero
     await page.check('input[value="Male"]');
