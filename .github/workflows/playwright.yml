@@ -8,7 +8,10 @@ jobs:
     steps:
       - name: Checkout código
         uses: actions/checkout@v3
-
+      
+      - name: Garantir permissões para Playwright
+        run: chmod +x ./node_modules/.bin/playwright
+        
       - name: Instalar dependências
         run: npm install
 
