@@ -38,6 +38,7 @@ test('DELETE - remove a user', async ({ request }) => {
     const response = await request.delete(`${API_URL}/users/2`);
 
     expect(response.status()).toBe(204); 
+    console.log(response.status());
 });
 
 test('alpha test', async ({ request }) => {
@@ -51,4 +52,47 @@ test('alpha test', async ({ request }) => {
 
     expect(responseBody.name).toBe(city);
     expect(responseBody.main.temp).toBeGreaterThanOrEqual(0);
+});
+
+test('PUT - update name and job', async ({request})=>{
+    const userUpdate = {
+        name : 'Maria',
+        job: 'SDET'
+    };
+
+    const response = await request.put(`${API_URL}/users/2`, {
+        data: userUpdate
+    });
+
+    expect(response.status()).toBe(200);
+
+    const responseBody = await response.json();
+    console.log(responseBody);
+
+    expect(responseBody.name).toBe(userUpdate.name);
+    expect(responseBody.job).toBe(userUpdate.job);
+});
+
+test('PATCH - update job', async ({request})=>{
+    const userUpdate = {
+        job: 'SDET'
+    };
+
+    const response = await request.patch(`${API_URL}/users/2`, {
+        data: userUpdate
+    });
+
+    expect(response.status()).toBe(200);
+
+    const responseBody = await response.json();
+    console.log(responseBody);
+
+    expect(responseBody.job).toBe(userUpdate.job);
+});
+
+test('GET - user not found', async ({ request }) => {
+    const response = await request.get(`${API_URL}/users/23`);
+    
+    expect(response.status()).toBe(404);
+    console.log(response.status());
 });
