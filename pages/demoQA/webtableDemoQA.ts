@@ -101,7 +101,7 @@ export class WebTableDemoQAPage extends MainPageDemoQA {
 
     //This method delete the line according to the first name
     async deleteUserByFirstName(firstName: string): Promise<boolean> {
-        // Seleciona todas as linhas da tabela
+        // Select the table
         const rows = await this.page.$$('.rt-tr-group');
 
         for (const row of rows) {            
@@ -116,21 +116,22 @@ export class WebTableDemoQAPage extends MainPageDemoQA {
             }
         }    
         return false;
-    
-        /*for (let i = 0; i < rows.length; i++) {
-            const row = rows[i];
-            
+    }
+
+    //This method edit the line according to the first name
+    async clickOnEditOnUserByFirstName(firstName: string){
+        // Select the table
+        const rows = await this.page.$$('.rt-tr-group');
+
+        for (const row of rows) {            
             const rowText = await row.innerText();
-    
-            if (rowText.includes(firstName)) {                
-                const deleteButton = await row.$('span[title="Delete"]');
-                if (deleteButton) {
-                    await deleteButton.click();
-                    return true; 
+            
+            if (rowText.includes(firstName)) {
+                const editButton = await row.$('[id*="edit"]');
+                if (editButton) {
+                    await editButton.click();
                 }
             }
-        }
-    
-        return false; */
+        }    
     }
 }

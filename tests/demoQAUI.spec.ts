@@ -48,3 +48,24 @@ test('Delenting a item - WebTable', async ({ page }) => {
     const isPresent = await webTable.isUserInTableWithTheFirstName(firstName);
     expect(isPresent).toBeFalsy();
 });
+
+test('Updating a item - WebTable', async ({ page }) => {
+    const webTable = new WebTableDemoQAPage(page);
+
+    const firstName = 'Alden';
+    const firstNameUpdated = 'John';
+
+    // Go the the https://demoqa.com/webtables
+    await webTable.navigateToWebTables();
+    await webTable.clickOnEditOnUserByFirstName(firstName);    
+
+    // Wait the submit action
+    await page.waitForTimeout(3000);
+
+    await webTable.fillFistName(firstNameUpdated);
+    await webTable.clickOnSubmitButton();
+
+    // Validate if the line is included
+    const isPresent = await webTable.isUserInTableWithTheFirstName(firstNameUpdated);
+    expect(isPresent).toBeTruthy();
+});
