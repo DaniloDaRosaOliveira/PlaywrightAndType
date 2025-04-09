@@ -3,13 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:all": "npm run test:ui && npm run test:api",
+    "test:ui": "cucumber-js -r ts-node/register -r tests/steps/root.ts -r tests/steps/**/*.ts tests/features/**/*.feature",
+    "test:api": "playwright test tests/api"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "@playwright/test": "^1.51.1"
+    "@cucumber/cucumber": "^11.2.0",
+    "@playwright/test": "^1.51.1",
+    "playwright": "^1.51.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }
