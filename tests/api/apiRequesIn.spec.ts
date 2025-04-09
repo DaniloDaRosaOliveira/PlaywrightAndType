@@ -2,7 +2,7 @@ import { test, expect, request } from '@playwright/test';
 
 const API_URL = 'https://reqres.in/api';
 
-/*test('GET - get users list', async ({ request }) => {
+test('GET - get users list', async ({ request }) => {
     const response = await request.get(`${API_URL}/users?page=2`);
     
     expect(response.status()).toBe(200);
@@ -95,4 +95,4 @@ test('GET - user not found', async ({ request }) => {
     
     expect(response.status()).toBe(404);
     console.log(response.status());
-});*/
+});

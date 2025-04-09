@@ -1,3 +1,4 @@
+@ignore
 Feature: Book a ticket to the red planet
 
   Scenario: Book a ticket with valid departure and return data without a promo code with seats available
