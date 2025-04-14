@@ -31,3 +31,17 @@ Then('the record is included with {string}, {string}, {string}, {string}, {strin
         const isAdded = await webTable.isUserInTable(firstName, lastName, email, age, salary, department);
         expect(isAdded).toBeTruthy();
 });
+
+When('the user clicks on the edit button for line with name {string}', async function (firstName) {
+    await webTable.clickOnEditOnUserByFirstName(firstName);    
+});
+
+When('the user fills the name with {string}', async function (firstName) {
+    await webTable.fillFistName(firstName);   
+});
+
+Then('the record is updated with name {string}', 
+    async function (firstName) {
+    const isPresent = await webTable.isUserInTableWithTheFirstName(firstName);
+    expect(isPresent).toBeTruthy();
+});
