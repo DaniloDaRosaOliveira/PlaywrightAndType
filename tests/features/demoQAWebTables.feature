@@ -17,3 +17,8 @@ Scenario: Edit an item in the table with valid data
        And the user fills the name with "John"
        And the user clicks on the submit button       
       Then the record is updated with name "John"
+
+Scenario: Delete an item from the table
+     Given the user is on demo QA web table page
+      When the user clicks on the delete button for line with name "Alden"
+      Then the record is removed with name "John" from the table

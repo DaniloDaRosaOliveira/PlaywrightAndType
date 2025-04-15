@@ -45,3 +45,14 @@ Then('the record is updated with name {string}',
     const isPresent = await webTable.isUserInTableWithTheFirstName(firstName);
     expect(isPresent).toBeTruthy();
 });
+
+When('the user clicks on the delete button for line with name {string}', async function (firstName) {
+    await webTable.deleteUserByFirstName(firstName);    
+    // Wait the submit action
+    await this.page.waitForTimeout(3000);   
+});
+
+Then('the record is removed with name {string} from the table', async function (firstName) {
+    const isPresent = await webTable.isUserInTableWithTheFirstName(firstName);
+    expect(isPresent).toBeFalsy();
+});
